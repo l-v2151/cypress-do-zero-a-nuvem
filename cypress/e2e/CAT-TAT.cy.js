@@ -67,10 +67,19 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     .clear()
     .should('have.value', '')
 })
-it(' exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios.', () => {
-cy.contains('button', 'Enviar').click  //como não se preencheu o valor do telemovel, surge a mensagem de erro
+it.only(' exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios.', () => {
+  cy.get('button[type="submit"]').click()
+
+  //cy.contains('button', 'Enviar').click  //como não se preencheu o valor do telemovel, surge a mensagem de erro
   cy.get('.error').should('be.visible')
 })
+
+it.only('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () =>
+{
+cy.get('button[type="submit"]').click()
+cy.get('.error').should('be.visible')
+})
+
  it('envia o formuário com sucesso usando um comando customizado', () => {
     const data = {
       firstName:'Laura',
